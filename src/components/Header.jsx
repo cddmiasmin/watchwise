@@ -5,9 +5,9 @@ import HeaderEnd from "./HeaderEnd";
 
 const Header = () => {
     return (
-        <div className='w-screen z-40 mb-4 p-3 flex flex-row justify-between items-center'>
+        <div className='w-screen h-18 py-3 px-0 flex flex-row justify-between items-center'>
             <HearderStart />
-            <SiThemoviedatabase className="text-white text-4xl"/>
+            <SiThemoviedatabase className="text-main text-4xl"/>
             <HeaderEnd />
         </div>
     );
