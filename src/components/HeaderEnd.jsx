@@ -24,7 +24,7 @@ const HeaderEnd = () => {
     };
 
     return (
-        <div className="flex flex-row items-center gap-2">
+        <div className="flex flex-row items-center gap-2 xl:mr-5">
             <Button
                 id="basic-button"
                 aria-controls={openMenu ? 'basic-menu' : undefined}

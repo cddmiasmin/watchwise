@@ -3,6 +3,7 @@
 
 @theme {
   --color-main: oklch(0.444 0.177 26.899);
+  --color-just-watch: #fbc500;
   --color-background: #14181c;
 
   --font-roboto: "Roboto", serif;
