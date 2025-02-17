@@ -1,7 +1,8 @@
 import Home from "./pages/Home"
+import Movie from "./pages/Movie"
 
 function App() {
-  return <Home />
+  return <Movie />
 }
 
 export default App
