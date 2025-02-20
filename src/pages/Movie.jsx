@@ -2,14 +2,18 @@ import { useState } from 'react'
 
 import Cast from '../components/Cast';
 import Header from '../components/Header';
+import Similar from '../components/Similar';
 import Provider from '../components/Provider';
-import { colorBackground } from '../utils/colors';
+import AvailabilityModal from '../components/AvailabilityModal';
 
 import { BsBookmarkPlusFill } from "react-icons/bs";
-import Similar from '../components/Similar';
 
 const Movie = () => {
     const [active, setActive] = useState(true);
+    const [openModal, setOpenModal] = useState(false);
+
+    const handleOpenModal = () => setOpenModal(true);
+    const handleCloseModal = () => setOpenModal(false);
 
     const providers = [
         {
@@ -20,7 +24,7 @@ const Movie = () => {
             nome: 'GloboPlay',
             img: 'https://images.justwatch.com/icon/270278212/s100/globoplay.jpeg'
         }
-    ]
+    ];
 
     const cast = [
         {
@@ -41,7 +45,7 @@ const Movie = () => {
             character: "Maggie Prescott",
             order: 3
         }
-    ]
+    ];
 
     const similar =  [
           {
@@ -425,8 +429,7 @@ const Movie = () => {
         //     "vote_average": 6.5,
         //     "vote_count": 5
         //   }
-    ]
-    
+    ];
     
     return (
         <div className={`w-screen h-screen bg-background flex ${active ? 'justify-star' : 'justify-center'} items-center`}>
@@ -542,10 +545,17 @@ const Movie = () => {
                                                 <span className='font-roboto font-semibold text-sm text-[#6a7c8f] p-3'>
                                                     DISPONIBILIDADE
                                                 </span>
-                                                <button className='bg-[#434f5b] text-white font-roboto text-xs p-1.5 mr-3 cursor-pointer flex flex-row justify-between items-center gap-1 rounded-sm'>
+                                                <button
+                                                    onClick={handleOpenModal} 
+                                                    className='bg-[#434f5b] text-white font-roboto text-xs p-1.5 mr-3 cursor-pointer flex flex-row justify-between items-center gap-1 rounded-sm'
+                                                >
                                                     <BsBookmarkPlusFill />
                                                     Adicionar disponibilidade
                                                 </button>
+                                                <AvailabilityModal
+                                                    openModal={openModal}
+                                                    handleCloseModal={handleCloseModal}
+                                                />
                                             </div>
                                             <div className='flex flex-col w-full'>
                                                 <div className='flex flex-row justify-star items-center w-full h-[5.3rem] border-b border-[#456]'> 
