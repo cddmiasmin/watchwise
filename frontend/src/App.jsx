@@ -1,8 +1,8 @@
-import Home from "./pages/Home"
-import Movie from "./pages/Movie"
+import Home from "./pages/Home";
+import Movie from "./pages/Movie";
 
 function App() {
-  return <Movie />
+  return <Home />
 }
 
 export default App
