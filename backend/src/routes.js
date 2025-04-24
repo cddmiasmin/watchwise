@@ -6,6 +6,10 @@ import WatchlistController  from './controllers/WatchlistController.js';
 import ListController from './controllers/ListController.js';
 import SearchController from './controllers/SearchController.js';
 
+router.get('/hello-world', (req, res) => {
+    res.json('hello world!')
+});
+
 router.get('/auth', AuthenticationController.CreateSession);
 
 router.get('/watchlist', WatchlistController.Watchlist);
