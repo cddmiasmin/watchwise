@@ -6,7 +6,8 @@ const SearchController = {
     async Movie(req, res) {
         try {
             const query = req.params.query;
-            const result = await SearchService.Movie(query);
+            const year = req.params?.year;
+            const result = await SearchService.Movie(year, query);
             console.log(result);
             res.json(result);
         } catch (err) {

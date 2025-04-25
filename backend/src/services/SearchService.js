@@ -2,8 +2,8 @@ import { api, tmdb_header } from "../tmdb.js";
 
 const SearchService = {
 
-    async Movie(query) {
-        const url = api + `search/movie?query=${query}&include_adult=true&language=pt-BR&page=1`;
+    async Movie(year, query) {
+        const url = api + `search/movie?query=${query}&include_adult=true&language=pt-BR&page=1${year ? `&year=${year}` : ''}`;
 
         const response = await fetch(url, {
             method: 'GET',

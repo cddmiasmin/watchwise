@@ -6,7 +6,8 @@ export const {
     TMDB_ACCOUNT_ID, 
     TMDB_USERNAME, 
     TMDB_PASSWORD,
-    SESSION_ID
+    SESSION_ID,
+    TMDB_JOINT_WATCHLIST_ID
 } = process.env
 export const tmdb_header = {
     accept: 'application/json',

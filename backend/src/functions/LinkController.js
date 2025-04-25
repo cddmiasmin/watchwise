@@ -94,11 +94,11 @@ const getName = async(page) => {
     return username;
 }
 
-(async () => {
+const Twitter = async (link) => {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
 
-    const url = 'https://x.com/michangelodvm/status/1911856992429232432';
+    const url = link;
 
     await page.goto(url, { waitUntil: 'load' });
     await page.setViewport({ width: 1080, height: 1024 });
@@ -108,14 +108,16 @@ const getName = async(page) => {
     const text = await getTweetText(page);
     const link = await getTweetLink(page);
     const imgs = await getTweetImages(page);
-
-    console.log({
-        username: username,
-        // tweetLink: url,
-        // text: text,
-        // link: link,
-        // images: imgs
-    })
-
+    
     await browser.close();
-}) ();
+
+    return({
+        username: username,
+        tweetLink: url,
+        text: text,
+        link: link,
+        images: imgs
+    })
+};
+
+export default Twitter;
