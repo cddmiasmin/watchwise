@@ -5,10 +5,14 @@ import AuthenticationController from './controllers/AuthenticationController.js'
 import WatchlistController  from './controllers/WatchlistController.js';
 import ListController from './controllers/ListController.js';
 import SearchController from './controllers/SearchController.js';
+import TelegramBotController from './controllers/TelegramBotController.js';
+import { TELEGRAM_TOKEN } from './telegram-bot.js';
 
 router.get('/hello-world', (req, res) => {
     res.json('hello world!')
 });
+
+router.post(`/webhook/${TELEGRAM_TOKEN}`, TelegramBotController.processTelegramMessage);
 
 router.get('/auth', AuthenticationController.CreateSession);
 

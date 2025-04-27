@@ -20,6 +20,7 @@
     "firebase": "^11.6.0",
     "firebase-admin": "^13.2.0",
     "lodash": "^4.17.21",
+    "node-telegram-bot-api": "^0.66.0",
     "nodemon": "^3.1.9",
     "puppeteer": "^24.4.0"
   }

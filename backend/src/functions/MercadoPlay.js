@@ -96,5 +96,7 @@ const movie = {
 };
 const query = movie.original_title;
 
-const movies = await mercadoPlay(query);
-console.log('RESULTADO AQUI \n', movies);
+// const movies = await mercadoPlay(query);
+// console.log('RESULTADO AQUI \n', movies);
+
+export default mercadoPlay;

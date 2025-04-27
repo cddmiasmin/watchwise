@@ -94,11 +94,9 @@ const getName = async(page) => {
     return username;
 }
 
-const Twitter = async (link) => {
+const Twitter = async (url) => {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
-
-    const url = link;
 
     await page.goto(url, { waitUntil: 'load' });
     await page.setViewport({ width: 1080, height: 1024 });
