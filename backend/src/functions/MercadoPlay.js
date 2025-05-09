@@ -47,33 +47,60 @@ const AnalyzeResults = async (page) => {
     return result;
 }
 
-const mercadoPlay = async (query) => {
-    // const browser = await puppeteer.launch({
-    //     headless: false,
-    //     slowMo: 250, // desacelera ações
-    //     args: ['--no-sandbox', '--disable-setuid-sandbox']
-    // });
-    const browser = await puppeteer.launch({headless: false});
-    const page = await browser.newPage();
+const MercadoPlay = {
 
-    const url = 'https://play.mercadolivre.com.br/';
+    async searchOnMercadoPlay(query){
+        // const browser = await puppeteer.launch({
+        //     headless: false,
+        //     slowMo: 250, // desacelera ações
+        //     args: ['--no-sandbox', '--disable-setuid-sandbox']
+        // });
+        const browser = await puppeteer.launch({headless: false});
+        const page = await browser.newPage();
+    
+        const url = 'https://play.mercadolivre.com.br/';
+    
+        await page.goto(url, { waitUntil: ['load', 'domcontentloaded', 'networkidle2'] });
+        await page.setUserAgent(
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
+        );
+        await page.setViewport({ width: 1080, height: 1024 });
+        await page.evaluateOnNewDocument(() => {
+            Object.defineProperty(navigator, 'webdriver', { get: () => false });
+        });
+    
+        await PerformSearch(page, query);
+        const results = await AnalyzeResults(page);
+    
+        await browser.close();
+    
+        return results;
+    },
 
-    await page.goto(url, { waitUntil: ['load', 'domcontentloaded', 'networkidle2'] });
-    await page.setUserAgent(
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
-    );
-    await page.setViewport({ width: 1080, height: 1024 });
-    await page.evaluateOnNewDocument(() => {
-        Object.defineProperty(navigator, 'webdriver', { get: () => false });
-    });
+    async getMovieInfo(url){
+        const browser = await puppeteer.launch({headless: false});
+        const page = await browser.newPage();
+        await page.goto(url, { waitUntil: ['load', 'domcontentloaded', 'networkidle2'] });
+        await page.setViewport({ width: 1080, height: 1024 });
 
-    await PerformSearch(page, query);
-    const results = await AnalyzeResults(page);
+        const name = await page.$eval('h2', element => element.textContent);
+        let year = '';
 
-    await browser.close();
+        await page.waitForSelector('div > .content-subtitle.content-detail__content-subtitle');
+        const spans = await page.$$("span.andes-typography.content-subtitle__label.andes-typography--type-body.andes-typography--size-m.andes-typography--color-primary.andes-typography--weight-regular");
 
-    return results;
-};
+        if (spans.length !== 0) {
+            const lastSpan = spans[spans.length - 1];
+            const lastSpanText = await page.evaluate(span => span.textContent.trim(), lastSpan);
+            year = lastSpanText;
+        }
+
+        await browser.close();
+
+        return {name, year};
+    }
+
+}
 
 const movie = {
     "adult": false,
@@ -96,7 +123,9 @@ const movie = {
 };
 const query = movie.original_title;
 
-// const movies = await mercadoPlay(query);
-// console.log('RESULTADO AQUI \n', movies);
+const url = 'https://play.mercadolivre.com.br/assistir/proposta-indecente/1a197f3bd7a94793a47629a8fa1e211d';
 
-export default mercadoPlay;
+// const movies = await MercadoPlay.getMovieInfo(url);
+// console.log('RESULTADO AQUI\n', movies);
+
+export default MercadoPlay;
