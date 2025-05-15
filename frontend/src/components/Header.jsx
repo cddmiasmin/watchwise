@@ -7,7 +7,7 @@ import imgLogo from '/public/logo.png';
 
 const Header = () => {
     return (
-        <div className="w-full md:w-[62.5%] xl:w-[80%] h-[50px] flex flex-row justify-between items-center max-sm:px-3 z-1">
+        <div className="w-full md:w-[62.5%] xl:w-[70%] h-[50px] flex flex-row justify-between items-center max-sm:px-3 z-1">
             <div className="h-[40px] w-[3rem] md:w-[3.5rem] flex items-center order-1 xl:order-0">
                 <img
                     className="size-full" 
