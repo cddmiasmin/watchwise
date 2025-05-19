@@ -1,11 +1,21 @@
+import { useState } from "react";
+
 import { IoMenu, IoSearch } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
+import { FaPlus } from "react-icons/fa";
 
 import { user } from "../data/user";
 
 import imgLogo from '/public/logo.png';
 
+import Menu from "./Menu";
+import Log from "./Log";
+
 const Header = () => {
+
+    const [openMenu, setMenu] = useState(false);
+    const [openLog, setLog] = useState(false);
+
     return (
         <div className="w-full md:w-[62.5%] xl:w-[70%] h-[50px] flex flex-row justify-between items-center max-sm:px-3 z-1">
             <div className="h-[40px] w-[3rem] md:w-[3.5rem] flex items-center order-1 xl:order-0">
@@ -48,26 +58,35 @@ const Header = () => {
                             AGENDA
                         </button>
                     </div>
-                    <div className="h-[28px] w-[15rem] bg-[#2c3440] flex justify-end items-center px-2 rounded-sm">
-                        <IoSearch className="text-white"/>
+                    <div className="flex">
+                        <IoSearch className="text-white text-base"/>
                     </div>
+                    <button
+                        onClick={() => setLog(true)} 
+                        className="flex flex-row justify-center items-center gap-1 cursor-pointer bg-[#00ac1c] hover:bg-[#009318] py-1.5 px-2.5 max-xl:py-1 xl:px-4 rounded-sm"
+                    >
+                        <FaPlus className="text-[#f4fcf0] text-xs font-bold"/>
+                        <span className="text-[#f4fcf0] font-nunito-sans font-bold text-sm">LOG</span>
+                    </button>
                 </div>
-                <div className="xl:hidden flex h-full w-[1.5rem]">
+                <button 
+                    onClick={() => setMenu(true)}
+                    className="xl:hidden flex cursor-pointer h-full w-[1.5rem]"
+                >
                     <IoMenu className="text-white size-full"/>
-                </div>
+                </button>
             </div>
-            <div className="xl:hidden order-2 h-full flex">
-                <div className="xl:hidden h-full flex flex-row justify-center items-center gap-3">
-                <div className="flex flex-row gap-1 justify-center items-center">
-                        <img
-                            className="size-[1.6rem] border border-white rounded-full"  
-                            src={user.icon}
-                            alt={`${user.name}'s icon`}
-                        />
-                        <IoIosArrowDown className="text-white"/>
-                    </div>
-                </div>
+            <div className="xl:hidden order-2 flex">
+                <button
+                    onClick={() => setLog(true)} 
+                    className="flex flex-row justify-center items-center gap-1 cursor-pointer bg-[#00ac1c] hover:bg-[#009318] py-1.5 px-2.5 max-xl:py-1 xl:px-4 rounded-sm"
+                >
+                    <FaPlus className="text-[#f4fcf0] text-xs font-bold"/>
+                    <span className="text-[#f4fcf0] font-nunito-sans font-bold text-sm">LOG</span>
+                </button>
             </div>
+            <Menu openMenu={openMenu} setMenu={setMenu} />
+            <Log openLog={openLog} setLog={setLog} />
         </div>
     );
 }
