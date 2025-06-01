@@ -8,10 +8,27 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
 import { FaFilm } from "react-icons/fa";
+import { FiList, FiSettings, FiFilm } from "react-icons/fi";
+import { FaUserLock } from "react-icons/fa6";
 
 import { user } from '../data/user';
 
 const Menu = ({ openMenu, setMenu }) => {
+
+    const op = [
+        [
+            { name: 'Films', icon: <FiFilm className='text-dusty-sky'/>, route: '' },
+            { name: 'List', icon: <FiList className='text-dusty-sky'/>, route: '' },
+        ],
+        [
+            { name: 'Watchlist', icon: <FaFilm className='text-dusty-sky'/>, route: '' },
+            { name: '', icon: <FaFilm className='text-dusty-sky'/>, route: '' },
+        ],
+        [
+            { name: 'Settings', icon: <FiSettings className='text-dusty-sky'/>, route: '' },
+            { name: 'Sign Out', icon: <FaUserLock className='text-dusty-sky'/>, route: '' },
+        ]
+    ];
 
     return (
         <Drawer 

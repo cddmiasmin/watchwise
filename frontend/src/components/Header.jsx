@@ -9,7 +9,6 @@ import { user } from "../data/user";
 import imgLogo from '/public/logo.png';
 
 import Menu from "./Menu";
-import Log from "./Log";
 
 const Header = () => {
 
@@ -86,7 +85,6 @@ const Header = () => {
                 </button>
             </div>
             <Menu openMenu={openMenu} setMenu={setMenu} />
-            <Log openLog={openLog} setLog={setLog} />
         </div>
     );
 }
