@@ -1,5 +1,5 @@
 export const user = {
-    icon: 'https://i.pinimg.com/736x/25/fe/9f/25fe9f36701bdd3b29e4e1ed4dabe032.jpg',
-    name: 'Iasmin',
-    username: 'IDIAS'
+    icon: 'https://i.pinimg.com/736x/ea/f3/20/eaf32097af4c0e3f4dcd0d1c7cca6912.jpg',
+    name: 'Iasmin Dias',
+    username: 'I.D'
 }

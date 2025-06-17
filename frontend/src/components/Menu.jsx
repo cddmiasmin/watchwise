@@ -1,70 +1,42 @@
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-
-import { FaFilm } from "react-icons/fa";
-import { FiList, FiSettings, FiFilm } from "react-icons/fi";
-import { FaUserLock } from "react-icons/fa6";
-
 import { user } from '../data/user';
+import { options } from '../utils/options';
 
-const Menu = ({ openMenu, setMenu }) => {
-
-    const op = [
-        [
-            { name: 'Films', icon: <FiFilm className='text-dusty-sky'/>, route: '' },
-            { name: 'List', icon: <FiList className='text-dusty-sky'/>, route: '' },
-        ],
-        [
-            { name: 'Watchlist', icon: <FaFilm className='text-dusty-sky'/>, route: '' },
-            { name: '', icon: <FaFilm className='text-dusty-sky'/>, route: '' },
-        ],
-        [
-            { name: 'Settings', icon: <FiSettings className='text-dusty-sky'/>, route: '' },
-            { name: 'Sign Out', icon: <FaUserLock className='text-dusty-sky'/>, route: '' },
-        ]
-    ];
-
+const Menu = () => {
     return (
-        <Drawer 
-            open={openMenu} 
-            onClose={() => setMenu(false)}
-            sx={{
-                '& .MuiDrawer-paper': {
-                    backgroundColor: '#14181c',
-                }
-            }}
-        >
-            <Box sx={{ width: 250 }} onClick={() => setMenu(false)}>
-                <div className='mt-5 flex flex-col gap-2 justify-center items-center'>
-                    <img
-                        className="size-[4rem] border border-white rounded-full"  
-                        src={user.icon}
-                        alt={`${user.name}'s icon`}
-                    />
-                    <span className="font-nunito-sans font-extrabold text-white text-sm">
-                        {user.username}
-                    </span>
-                </div>
-                <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem key={index} disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <FaFilm className='text-dusty-sky'/>
-                                </ListItemIcon>
-                                <ListItemText primary={text} sx={{ color: 'white'}} />
-                            </ListItemButton>
-                        </ListItem>
-                    ))}
-                </List>
-            </Box>
-        </Drawer>
+        <div className="bg-midnight-slate w-full flex flex-col justify-center items-center px-2 gap-2 py-5">
+            <div className="flex flex-col justify-center items-center">
+                <img 
+                    className="size-7 rounded-full"
+                    src={user.icon}
+                    alt={`${user.name}'icon`}
+                />
+                <h1 className="text-dusty-sky font-bold font-nunito-sans">
+                    {user.username.toLocaleUpperCase()}
+                </h1>
+            </div>
+            <div className='w-full h-[1px] bg-midnight-blue'/>
+            <div className="w-full grid grid-cols-2 grid-rows-4 justify-items-center items-center">
+                {options.navs.map((nav, key) => (
+                    <h1 
+                        key={key}
+                        className="text-dusty-sky font-nunito-sans cursor-pointer text-xs hover:text-white"
+                    >
+                        {nav.name.toLocaleUpperCase()}
+                    </h1>
+                ))}
+            </div>        
+            <div className='w-full h-[1px] bg-midnight-blue'/>
+            <div className="w-full grid grid-cols-2 grid-rows-1 justify-items-center items-center">
+                {options.account.map((acc, key) => (
+                    <h1 
+                        key={key}
+                        className="text-dusty-sky font-nunito-sans cursor-pointer text-xs hover:text-white"
+                    >
+                        {acc.name.toLocaleUpperCase()}
+                    </h1>
+                ))}
+            </div>
+        </div>
     );
 };
 

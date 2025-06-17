@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { BsFillGridFill, BsGrid, BsList } from "react-icons/bs";
+import { BsFillGridFill, BsGrid } from "react-icons/bs";
 import { TbLayoutList, TbLayoutListFilled } from "react-icons/tb";
 
 import Header from "../components/Header";
@@ -12,7 +12,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { getTMDBImage } from "../utils/getTMDBImage";
 
 import { FaCalendar } from "react-icons/fa";
-import { MdEdit, MdDelete } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 import { IoIosSend } from "react-icons/io";
 import { HiMiniLink } from "react-icons/hi2";
 import Tooltip from '@mui/material/Tooltip';
@@ -213,21 +213,6 @@ const Log = () => {
                             style={{boxShadow: 'inset 0 -1px #456'}}
                         />
                     </div>
-                        {/* <span className="font-nunito-sans text-dusty-sky font-semibold text-xl px-2">or</span>
-                    <div className="flex flex-col md:flex-row w-full gap-2 max-md:items-center">
-                        <input 
-                            className="bg-[#2c3440] focus:bg-white outline-none focus:ring-0 h-9 w-full rounded-xs font-nunito-sans font-normal text-[#8899aa] focus:text-[#234] focus:shadow-none p-2"
-                            placeholder="Paste your link here"
-                            style={{boxShadow: 'inset 0 -1px #456'}}
-                        />
-                        <button
-                            className="bg-[#567] uppercase px-5 rounded-sm text-[#c8d4e0] font-bold text-base max-md:py-2 max-md:w-5/12 cursor-pointer"
-                            style={{boxShadow: 'inset 0 1px rgba(255,255,255,.2),inset 0 -1px rgba(255,255,255,.2)'}}
-                            onClick={() => setLoading(true)}
-                        >
-                            Search
-                        </button>
-                    </div> */}
                 </div>
                 <div className="my-5 flex flex-col">
                     <div className='w-full h-[1px] bg-dusty-sky'/>

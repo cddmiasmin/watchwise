@@ -1,35 +1,12 @@
-import { Router } from 'express';
-const router = Router();
+const { Router } = require('express');
+const UserController = require('./controllers/UserController.js');
 
-import AuthenticationController from './controllers/AuthenticationController.js';
-import WatchlistController  from './controllers/WatchlistController.js';
-import ListController from './controllers/ListController.js';
-import SearchController from './controllers/SearchController.js';
-import TelegramBotController from './controllers/TelegramBotController.js';
-import { TELEGRAM_TOKEN } from './telegram-bot.js';
+const router = Router();
 
 router.get('/hello-world', (req, res) => {
     res.json('hello world!')
 });
 
-router.post(`/webhook/${TELEGRAM_TOKEN}`, TelegramBotController.processTelegramMessage);
+router.post('/auth', UserController.Authentication);
 
-router.get('/auth', AuthenticationController.CreateSession);
-
-router.get('/watchlist', WatchlistController.Watchlist);
-router.post('/watchlist/add/:movie', WatchlistController.AddToWatchlist);
-router.post('/watchlist/remove/:movie', WatchlistController.RemoveFromWatchlist);
-
-router.get('/list/mylists', ListController.MyLists);
-router.get('/list/:listId', ListController.Details);
-router.post('/list/add/:listId/:movieId', ListController.AddMovie);
-router.post('/list/remove/:listId/:movieId', ListController.RemoveMovie);
-router.post('/list/create', ListController.Create);
-router.post('/list/clear/:listId', ListController.Clear);
-router.delete('/list/delete/:listId', ListController.Delete);
-
-router.get('/search/movie/:query', SearchController.Movie);
-router.get('/search/person/:query', SearchController.Person);
-router.get('/search/multi/:query', SearchController.Multi);
-
-export default router;
+module.exports = router;
